@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85610283647448f7a0008c8aceb36a3a, type: 3}
+  m_Name: GameResources
+  m_EditorClassIdentifier: 
+  _spritesData:
+  - Key: cat
+    Value: {fileID: 21300000, guid: 818b0dcb353f289458a21c7d808ae9d3, type: 3}
+  - Key: dog
+    Value: {fileID: 21300000, guid: b1f9f49103eb435458d84cd5e32ab670, type: 3}
+  - Key: duck
+    Value: {fileID: 21300000, guid: 3b2a435939076d14e91e0556774f0dc0, type: 3}
+  - Key: pig
+    Value: {fileID: 21300000, guid: f0551d8cb2d07cc4fb1a8f84c7cef668, type: 3}
+  - Key: rabbit
+    Value: {fileID: 21300000, guid: e29d82d1c9fd4db458ba8268647b73ad, type: 3}
+  - Key: rhinoceros
+    Value: {fileID: 21300000, guid: 343d970ac1f26374b86b68e6c45490d9, type: 3}
+  _placeholder: {fileID: 0}

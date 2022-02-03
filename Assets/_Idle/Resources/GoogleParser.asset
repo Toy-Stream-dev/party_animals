@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652969bbaa6562c4b99e2bcd1a9ec9d1, type: 3}
+  m_Name: GoogleParser
+  m_EditorClassIdentifier: 
+  _credentials: {fileID: 4900000, guid: b3eaf4f973c0cb449b4e13717fcda222, type: 3}
+  _applicationName: 
+  _tableInfos:
+  - Name: Balance
+    ScriptableObject: {fileID: 11400000, guid: 7e0e78dcd801b744ebee098df35d6567, type: 2}
+    SpreadSheetLink: 1lDUo89TjlDkJ-Uf55UDjEF5BeGAh_wSDHCOPQOfmwic
+  - Name: Localization
+    ScriptableObject: {fileID: 11400000, guid: b54d2c78d2c53ce46a8adee560f65a5c, type: 2}
+    SpreadSheetLink: 1VLDJqcY1_BeLwMKW1p2gr11f5biqTV3it5Q3c1D3wYA

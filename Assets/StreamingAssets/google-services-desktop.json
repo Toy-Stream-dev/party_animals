@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "806870259595",
+    "project_id": "fluffy-brawl",
+    "storage_bucket": "fluffy-brawl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806870259595:android:22395720fd8356cdc2818e",
+        "android_client_info": {
+          "package_name": "com.toy.stream.fluffy.brawl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "806870259595-kqrttvpu8m89vt0f09ufi2jn32amp410.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHDktmKW2YNNMIv6oRg_NnqSaRPmYmUlA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "806870259595-kqrttvpu8m89vt0f09ufi2jn32amp410.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,17 @@
+{
+    "name": "GeneralTools",
+    "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:4c1385d685c46f74db48eff186bc563f",
+        "GUID:2c85e4e73a7b54f40947a34a5518aa40"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

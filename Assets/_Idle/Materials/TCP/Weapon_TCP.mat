@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Weapon_TCP
+  m_Shader: {fileID: 4800000, guid: 2bb9a943e413af04fbe8548850ee4224, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 6331ef0de6eb8ce498a19bb5f22c3ac7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Ramp:
+        m_Texture: {fileID: 2800000, guid: 88c549296eebb524eb07754c76d7a763, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _RampSmoothing: 0.08
+    - _RampThreshold: 0.308
+    - _ReceiveShadowsOff: 1
+    - __dummy__: 0
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
+    - _SColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _TCP2_AMBIENT_BACK: {r: 0.78195083, g: 0.81635565, b: 0.8679245, a: 1}
+    - _TCP2_AMBIENT_BOTTOM: {r: 0, g: 0, b: 0, a: 1}
+    - _TCP2_AMBIENT_FRONT: {r: 0.24830899, g: 0.29213953, b: 0.33962262, a: 1}
+    - _TCP2_AMBIENT_LEFT: {r: 0.68235296, g: 0.7764706, b: 0.8784314, a: 1}
+    - _TCP2_AMBIENT_RIGHT: {r: 0.68284976, g: 0.7771002, b: 0.8773585, a: 1}
+    - _TCP2_AMBIENT_TOP: {r: 0.51891243, g: 0.58788913, b: 0.6509434, a: 1}
+  m_BuildTextureStacks: []

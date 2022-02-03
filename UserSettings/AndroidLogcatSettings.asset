@@ -1,0 +1,143 @@
+{
+    "m_SelectedDeviceId": "RZ8R717382B",
+    "m_SelectedPackage": {
+        "deviceId": "RZ8R717382B",
+        "name": "com.toy.stream.fluffy.brawl",
+        "processId": 2200,
+        "exited": false
+    },
+    "m_SelectedPriority": 0,
+    "m_KnownPackagesForSerialization": [
+        {
+            "deviceId": "EP7426Z0KA",
+            "name": "com.DefaultCompany.prototype1",
+            "processId": 21962,
+            "exited": true
+        },
+        {
+            "deviceId": "EP7426Z0KA",
+            "name": "com.sonyericsson.home",
+            "processId": 1186,
+            "exited": false
+        },
+        {
+            "deviceId": "EP7426Z0KA",
+            "name": "com.DefaultCompany.prototype1",
+            "processId": 22565,
+            "exited": true
+        },
+        {
+            "deviceId": "EP7426Z0KA",
+            "name": "com.DefaultCompany.prototype1",
+            "processId": 24135,
+            "exited": true
+        },
+        {
+            "deviceId": "EP7426Z0KA",
+            "name": "com.DefaultCompany.prototype1",
+            "processId": 25219,
+            "exited": true
+        },
+        {
+            "deviceId": "EP7426Z0KA",
+            "name": "com.DefaultCompany.prototype1",
+            "processId": 30051,
+            "exited": true
+        },
+        {
+            "deviceId": "EP7426Z0KA",
+            "name": "com.platypus.games.richest.way",
+            "processId": 21794,
+            "exited": true
+        },
+        {
+            "deviceId": "RZ8R717382B",
+            "name": "com.platypus.games.idle.looters",
+            "processId": 16280,
+            "exited": true
+        },
+        {
+            "deviceId": "RZ8R717382B",
+            "name": "com.platypusgames.bravemage",
+            "processId": 2765,
+            "exited": true
+        },
+        {
+            "deviceId": "RZ8R717382B",
+            "name": "com.sec.android.app.launcher",
+            "processId": 2179,
+            "exited": true
+        },
+        {
+            "deviceId": "RZ8R717382B",
+            "name": "com.android.settings",
+            "processId": 27360,
+            "exited": true
+        },
+        {
+            "deviceId": "RZ8R717382B",
+            "name": "com.sec.android.app.launcher",
+            "processId": 2335,
+            "exited": true
+        },
+        {
+            "deviceId": "RZ8R717382B",
+            "name": "com.toy.stream.fluffy.brawl",
+            "processId": 2200,
+            "exited": false
+        }
+    ],
+    "m_Tags": {
+        "m_Entries": [
+            {
+                "m_Name": "Filter by all listed tags",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "No Filter",
+                "m_Selected": true
+            },
+            {
+                "m_Name": "",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "Tag Control...",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "Unity",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "CRASH",
+                "m_Selected": false
+            }
+        ]
+    },
+    "m_MemoryViewerState": {
+        "MemoryWindowHeight": 255.0,
+        "MemoryWindowWidth": 170.0,
+        "MemoryTypeEnabled": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true
+        ],
+        "MemoryGroup": 1,
+        "Behavior": 1
+    },
+    "m_Filter": "",
+    "m_FilterIsRegularExpression": false,
+    "m_SymbolPaths": []
+}

@@ -1,0 +1,17 @@
+{
+    "name": "GeneralTools.Editor",
+    "references": [
+        "GUID:17a3a739e4ea61543b5c4a4df0c2e285"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

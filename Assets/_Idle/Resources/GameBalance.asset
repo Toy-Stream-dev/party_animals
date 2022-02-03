@@ -1,0 +1,468 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b386ff08d56247629d6672ca88c86a1a, type: 3}
+  m_Name: GameBalance
+  m_EditorClassIdentifier: 
+  RewardSoftCurrencyForLevel: 50
+  RewardSoftCurrencyForCoin: 5
+  RandomLevelFromCount: 2
+  EmulateLoadingTime: 0.7
+  AttackRaycastDistanceArmed: 0.25
+  AttackRaycastDistanceUnarmed: 0.1
+  RangeAttackRaycastDistance: 1.25
+  RangeAttackMinDistance: 0.15
+  AttackLayermask:
+    serializedVersion: 2
+    m_Bits: 64
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  ItemLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  ThrowForce: 150
+  ProjectilePushForce: 0.7
+  PushForce: 1
+  DropUnitForce: 2.5
+  PushInterval: 2
+  MeleeWeaponScale: {x: 0.15, y: 0.15, z: 0.15}
+  RangeWeaponScale: {x: 0.28, y: 0.28, z: 0.28}
+  ThrowUnitDelay: 1
+  HandPunchPower: -1.28
+  MeleeWeaponBreakForceMultiplier: 0.4
+  RangeWeaponBreakForceMultiplier: 0.1
+  AttackRadius: 4.5
+  SlowMotionScale: 0.05
+  TimeToSlow: 0.01
+  TimeToNormal: 1
+  StartFOV: 28
+  SlowMotionFOV: 18
+  EndLevelDelay: 1
+  UnitDestroyDelay: 0.5
+  DisableAI: 0
+  PlayerData:
+    Nickname: user6803
+    Gravity: {x: 0, y: -10, z: 0}
+    MoveSpeed: 40
+    TurnSpeed: 15
+    StunTime: 3
+    StunResetTime: 5
+    StunPoints: 20
+    FallPoint: 10
+    FallTime: 2
+    LiftTime: 4
+    MinHandAttackImpulse: 2
+    RangeDamageTimeout: 0.5
+  BotParam:
+    Tasks:
+    - Type: 1
+      Priority: 50
+    - Type: 2
+      Priority: 50
+    DistanceToItem: 0.03
+    DistanceToEnemy: 0.03
+    DistanceToAim: 1.5
+    StepPercentAfterShot: 0.25
+    MoveSpeed: 30
+    TargetCountLimit: 1
+    AngularSpeed: 8
+    StunTime: 3
+    StunResetTime: 0
+    StunPoints: 3
+    FallPoint: 2
+  StartRatingPlace: 1500
+  ItemsParams:
+  - ItemType: 5
+    InteractableTime: 0.1
+    IsWeapon: 1
+    WeaponType: 0
+    AmmoAmount: 0
+    ShootInterval: 1
+    PunchPower: 5
+  - ItemType: 6
+    InteractableTime: 0.1
+    IsWeapon: 1
+    WeaponType: 0
+    AmmoAmount: 0
+    ShootInterval: 1
+    PunchPower: 5
+  - ItemType: 7
+    InteractableTime: 0.1
+    IsWeapon: 1
+    WeaponType: 0
+    AmmoAmount: 0
+    ShootInterval: 1
+    PunchPower: 5
+  - ItemType: 20
+    InteractableTime: 0.1
+    IsWeapon: 1
+    WeaponType: 1
+    AmmoAmount: 4
+    ShootInterval: 0.7
+    PunchPower: 3
+  - ItemType: 21
+    InteractableTime: 0.01
+    IsWeapon: 1
+    WeaponType: 1
+    AmmoAmount: 4
+    ShootInterval: 0.7
+    PunchPower: 3
+  - ItemType: 22
+    InteractableTime: 0.1
+    IsWeapon: 1
+    WeaponType: 1
+    AmmoAmount: 4
+    ShootInterval: 0.7
+    PunchPower: 3
+  - ItemType: 23
+    InteractableTime: 0.01
+    IsWeapon: 0
+    WeaponType: 0
+    AmmoAmount: 0
+    ShootInterval: 1
+    PunchPower: 0
+  - ItemType: 8
+    InteractableTime: 0.1
+    IsWeapon: 1
+    WeaponType: 0
+    AmmoAmount: 0
+    ShootInterval: 1
+    PunchPower: 1
+  LevelParams:
+  - _levelIndex: 1
+    _isTutorial: 1
+  - _levelIndex: 2
+    _isTutorial: 0
+  - _levelIndex: 3
+    _isTutorial: 0
+  - _levelIndex: 4
+    _isTutorial: 0
+  NickNames:
+  - gatling
+  - kraken
+  - HANNIBAL
+  - crusher
+  - FIGMENT
+  - kraken
+  - diviner
+  - GRIM
+  - EXORCIST
+  - demolition
+  - diviner
+  - diablo
+  - COGNAC
+  - DEVIN NASH
+  - yamecah
+  - HELLCAT
+  - diablo
+  - HANNIBAL
+  - arya
+  - NUCLEAR
+  - LEELOO
+  - DOM
+  - DOM
+  - hydra
+  - HANNIBAL
+  - LEELOO
+  - DOM
+  - BENDER
+  - gatling
+  - GIANT
+  - EXORCIST
+  - fester
+  - FOX
+  - ALIEN
+  - HANNIBAL
+  - hydra
+  - FOX
+  - HITTER
+  - NUCLEAR
+  - arya
+  - gatling
+  - FIGMENT
+  - the armor
+  - KENO
+  - hauteur
+  - fester
+  - warden
+  - COUGAR
+  - hydra
+  - daredevil
+  - HEROIN
+  - crusher
+  - FIGMENT
+  - herzogin
+  - fester
+  - exterminator
+  - FOX
+  - espada
+  - NUCLEAR
+  - DIRTY DIRTY
+  - GIANT
+  - COGNAC
+  - KENO
+  - NINJA
+  - the armor
+  - bomber
+  - grave
+  - BAAL
+  - YESIMFUNNY
+  - espada
+  - animus
+  - LEELOO
+  - COGNAC
+  - goddess
+  - COUGAR
+  - HAUNTER
+  - NINJA
+  - blevins
+  - HAUNTER
+  - daredevil
+  - warden
+  - GRENADE
+  - FOX
+  - FURY
+  - exterminator
+  - BAAL
+  - COGNAC
+  - ANNIHILATOR
+  - daredevil
+  - banshee
+  - YESIMFUNNY
+  - HITTER
+  - BAAL
+  - ALIEN
+  - HEROIN
+  - DEVIN NASH
+  - FURY
+  - bomber
+  - golem
+  - falchion
+  - ORACLE
+  - hero
+  - golem
+  - goddess
+  - HAUNTER
+  - yamecah
+  - boomslang
+  - DEVIN NASH
+  - falchion
+  - grave
+  - ORACLE
+  - BENDER
+  - espada
+  - GRENADE
+  - ghoul
+  - warden
+  - NUCLEAR
+  - grave
+  - detroit
+  - banshee
+  - hero
+  - goddess
+  - yamecah
+  - bomber
+  - eliminator
+  - the armor
+  - eliminator
+  - animus
+  - FIGMENT
+  - ANNIHILATOR
+  - ghoul
+  - HEROIN
+  - herzogin
+  - LEON
+  - LEELOO
+  - goddess
+  - DEVIANT
+  - ANNIHILATOR
+  - KENO
+  - bomber
+  - ORACLE
+  - COUGAR
+  - HELLCAT
+  - espada
+  - DOM
+  - diviner
+  - FURY
+  - BENDER
+  - manhattan
+  - DEVIANT
+  - diablo
+  - arya
+  - eliminator
+  - EXORCIST
+  - BENDER
+  - kraken
+  - GRIM
+  - diviner
+  - demolition
+  - crusher
+  - COUGAR
+  - animus
+  - manhattan
+  - golem
+  - DIRTY DIRTY
+  - boomslang
+  - herzogin
+  - daredevil
+  - eliminator
+  - hauteur
+  - blevins
+  - GRIM
+  - HELLCAT
+  - ORACLE
+  - NINJA
+  - diablo
+  - DEVIANT
+  - ANNIHILATOR
+  - detroit
+  - NINJA
+  - ghoul
+  - DEVIANT
+  - blevins
+  - hydra
+  - HELLCAT
+  - golem
+  - HAUNTER
+  - GRENADE
+  - kraken
+  - boomslang
+  - yamecah
+  - gatling
+  - exterminator
+  - ALIEN
+  - exterminator
+  - demolition
+  - HITTER
+  - FURY
+  - arya
+  - GRENADE
+  - ALIEN
+  - HITTER
+  - DIRTY DIRTY
+  - manhattan
+  - demolition
+  - detroit
+  - crusher
+  - grave
+  - boomslang
+  - LEON
+  - EXORCIST
+  - GIANT
+  - detroit
+  - GRIM
+  - herzogin
+  - KENO
+  - the armor
+  - GIANT
+  - HEROIN
+  - banshee
+  - falchion
+  - DIRTY DIRTY
+  - warden
+  - BAAL
+  - banshee
+  - DEVIN NASH
+  - blevins
+  ItemSkins:
+  - Name: Default
+    Identificator: cat
+    Id: 0
+    SoftPrice: 0
+    Mesh: {fileID: 2212009239438826721, guid: a87d55291211b2a47a7b0664f3e328c8, type: 3}
+  - Name: Test 1
+    Identificator: dog
+    Id: 1
+    SoftPrice: 250
+    Mesh: {fileID: 4493585093827132993, guid: 2ab65759d2349534395bf68329fce9df, type: 3}
+  - Name: Test 2
+    Identificator: pig
+    Id: 2
+    SoftPrice: 500
+    Mesh: {fileID: 4493585093827132993, guid: 225c19e57ce4dfc4d8d6333137f83722, type: 3}
+  - Name: 
+    Identificator: duck
+    Id: 3
+    SoftPrice: 750
+    Mesh: {fileID: -1550514412580984892, guid: 75d6626e04c549f43b7c203f2646ce33, type: 3}
+  - Name: 
+    Identificator: rhinoceros
+    Id: 4
+    SoftPrice: 1000
+    Mesh: {fileID: -1057537345715913504, guid: 0cbb46d9700c60f4e99963e5a5e20593, type: 3}
+  - Name: 
+    Identificator: rabbit
+    Id: 5
+    SoftPrice: 1500
+    Mesh: {fileID: -5053925668127403250, guid: 74dd050cc055e9643932677ea7c3776f, type: 3}
+  UnitSkins:
+  - {fileID: 2212009239438826721, guid: a87d55291211b2a47a7b0664f3e328c8, type: 3}
+  - {fileID: 4493585093827132993, guid: 2ab65759d2349534395bf68329fce9df, type: 3}
+  - {fileID: 4493585093827132993, guid: 225c19e57ce4dfc4d8d6333137f83722, type: 3}
+  - {fileID: -1550514412580984892, guid: 75d6626e04c549f43b7c203f2646ce33, type: 3}
+  - {fileID: -5053925668127403250, guid: 74dd050cc055e9643932677ea7c3776f, type: 3}
+  - {fileID: -1057537345715913504, guid: 0cbb46d9700c60f4e99963e5a5e20593, type: 3}
+  TouchpadSense: 15
+  DailyRewards:
+  - Day: 1
+    Amount: 100
+  - Day: 2
+    Amount: 100
+  - Day: 3
+    Amount: 100
+  - Day: 4
+    Amount: 100
+  - Day: 5
+    Amount: 200
+  - Day: 6
+    Amount: 200
+  - Day: 7
+    Amount: 1000
+  Offers:
+  - Id: 1
+    NonConsumable: 1
+    ShopId: com.toy.stream.fluffy.brawl.no.ads
+  CharacterLevels:
+  - Level: 1
+    Experience: 100
+  - Level: 2
+    Experience: 200
+  - Level: 3
+    Experience: 300
+  - Level: 4
+    Experience: 400
+  - Level: 5
+    Experience: 500
+  - Level: 6
+    Experience: 600
+  - Level: 7
+    Experience: 700
+  - Level: 8
+    Experience: 800
+  - Level: 9
+    Experience: 900
+  - Level: 10
+    Experience: 1000
+  - Level: 11
+    Experience: 2000
+  - Level: 12
+    Experience: 4000
+  - Level: 13
+    Experience: 8000
+  - Level: 14
+    Experience: 16000
+  - Level: 15
+    Experience: 32000
