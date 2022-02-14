@@ -14,14 +14,18 @@ namespace _Idle.Scripts.Utilities
 			return new Vector2(Mathf.Clamp(v.x, min, max), Mathf.Clamp(v.y, min, max));
 		}
 		
-		public static float GetRandomValue(this Vector2 v)
+		public static float RandomValue(this Vector2 v)
 		{
 			return UnityEngine.Random.Range(v.x, v.y);
 		}
 		
-		public static int GetIntRandomValue(this Vector2 v)
+		public static int RandomIntValue(this Vector2 v)
 		{
 			return (int)UnityEngine.Random.Range(v.x, v.y);
+		}
+		public static int RandomValue(this Vector2Int v)
+		{
+			return UnityEngine.Random.Range(v.x, v.y + 1);
 		}
 	}
 }

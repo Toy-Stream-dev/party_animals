@@ -103,8 +103,8 @@ namespace _Idle.Scripts.UI.Windows
 
         private void OnPressedNextLevel()
         {
-            _gameModel.LoadNextLevel();
             Close();
+            _gameModel.LoadNextLevel();
         }
         
         public override BaseUI Open()
@@ -140,7 +140,7 @@ namespace _Idle.Scripts.UI.Windows
             _nextLevelButton.Deactivate();
             _adPlayed = false;
             
-            _gameCamera.ShowFx();
+            // _gameCamera.ShowFx();
             _anim.PlayAnim(GuiAnimType.Open);
             return base.Open();
         }
@@ -253,7 +253,7 @@ namespace _Idle.Scripts.UI.Windows
 
         public override void Close()
         {
-            _gameCamera.HideFx();
+            // _gameCamera.HideFx();
             base.Close();
         }
     }

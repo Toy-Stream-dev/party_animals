@@ -87,6 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5738453251901281613}
   - component: {fileID: 2612454878707977885}
+  - component: {fileID: 5373544787823258802}
   - component: {fileID: 1944773041148853910}
   - component: {fileID: 1029515035521766421}
   m_Layer: 10
@@ -137,6 +138,23 @@ MonoBehaviour:
   GrabbedPoint2: {fileID: 4038600021928055609}
   MeleeWeaponCollider: {fileID: 0}
   RangeWeaponCollider: {fileID: 5741257445306646749}
+  Outline: {fileID: 5373544787823258802}
+--- !u!114 &5373544787823258802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4747303919655230695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0f30180b4c4a8fb6310eda69475088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mesh: {fileID: 7225015905205852228}
+  _width: 0.75
+  _color: {r: 0, g: 0.9026095, b: 0.9607843, a: 1}
+  _enableOnStart: 0
 --- !u!64 &1944773041148853910
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -371,7 +389,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3f481947f5f37324cbb3ac4468a4bd11, type: 2}
+      objectReference: {fileID: 2100000, guid: 8ded739ff67ad424b825a4af1827bda9, type: 2}
     - target: {fileID: 919132149155446097, guid: 9eab7ce56f6d5624b81d6121ad68ea5c,
         type: 3}
       propertyPath: m_Name
@@ -382,6 +400,12 @@ PrefabInstance:
 --- !u!4 &8362979394117460779 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9eab7ce56f6d5624b81d6121ad68ea5c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8324336624615097536}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7225015905205852228 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 9eab7ce56f6d5624b81d6121ad68ea5c,
     type: 3}
   m_PrefabInstance: {fileID: 8324336624615097536}
   m_PrefabAsset: {fileID: 0}

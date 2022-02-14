@@ -2,7 +2,7 @@ namespace _Idle.Scripts
 {
 	public class DevFlags
 	{
-		public const bool DEV_TOOLS = true,
+		public const bool DEV_TOOLS = false,
 						  RESET = false,
 		                  SKIP_TUTORIAL = false,
 		                  FORCE_EN_LOCALIZATION = true,

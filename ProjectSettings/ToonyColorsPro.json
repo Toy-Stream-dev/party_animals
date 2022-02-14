@@ -3,7 +3,7 @@
     "SubFolders": true,
     "OverwriteConfig": false,
     "LoadAllShaders": false,
-    "CustomOutputPath": "_Idle/Materials/TCP",
+    "CustomOutputPath": "_Idle\\Materials\\TCP",
     "LastImplementationExportImportPath": "D:/Program Files/Unity/Projects/GIT/ITLGames/HC_Party Animals/Assets",
     "OpenedFoldouts": [
         "LIGHTING",

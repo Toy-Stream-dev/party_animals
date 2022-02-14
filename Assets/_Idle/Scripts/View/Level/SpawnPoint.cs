@@ -11,5 +11,7 @@ namespace _Idle.Scripts.View.Level
 	public class SpawnPoint : BaseBehaviour
 	{
 		public SpawnPointType PointType;
+
+		public bool Available { get; set; } = true;
 	}
 }

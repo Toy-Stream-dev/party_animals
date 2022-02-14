@@ -79,6 +79,10 @@ namespace _Idle.Scripts.Balance
 		
 		[Space, Header("Experience")]
 		public List<CharacterLevel> CharacterLevels;
+		[Space, Header("Killing phrases")]
+		public List<KillingTextConfig> KillingTextConfigs;
+		[Space, Header("Win streak rewards")]
+		public List<WinStreakRewardItem> WinStreakRewards;
 
 
 #if UNITY_EDITOR
@@ -95,10 +99,21 @@ namespace _Idle.Scripts.Balance
 	
 		
 	[Serializable]
+	public class KillingTextConfig
+	{
+		public int KillCount;
+		[TextArea]
+		public string Text;
+		public Color KillerColor;
+		public Color VictimColor;
+	}
+		
+	[Serializable]
 	public class CharacterLevel
 	{
 		public int Level;
 		public int Experience;
+		public RewardItemConfig[] Rewards;
 	}
 		
 	[Serializable]
@@ -107,14 +122,29 @@ namespace _Idle.Scripts.Balance
 		public string Name;
 		public string Identificator;
 		public int Id;
-		public int SoftPrice;
+		public PurchaseType PurchaseType = PurchaseType.Soft;
+		public int PriceAmount;
 		public Mesh Mesh;
 	}
-	
+
 	[Serializable]
 	public class DailyRewardConfig
 	{
 		public int Day;
+		public int Amount;
+	}
+	
+	[Serializable]
+	public class WinStreakRewardItem
+	{
+		public int WinCount;
+		public RewardItemConfig[] Rewards;
+	}
+	
+	[Serializable]
+	public class RewardItemConfig
+	{
+		public GameParamType RewardType;
 		public int Amount;
 	}
 	

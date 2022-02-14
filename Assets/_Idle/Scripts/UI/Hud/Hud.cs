@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using _Idle.Scripts.Balance;
+using _Idle.Scripts.Data;
 using _Idle.Scripts.Enums;
 using _Idle.Scripts.Model;
 using _Idle.Scripts.Model.Numbers;
@@ -26,6 +28,7 @@ namespace _Idle.Scripts.UI.HUD
         [SerializeField] private TextMeshProUGUI _nextLevel;
         [SerializeField] private InputPanel _inputPanel;
         [SerializeField] private UnitsHUD _unitsHud;
+        [SerializeField] private TextMeshProUGUI _killingText;
 
         private List<GamePlayElementUI> _gamePlayElements;
 
@@ -215,6 +218,31 @@ namespace _Idle.Scripts.UI.HUD
         private void CompleteLevel()
         {
             GameUI.Get<LevelCompletedWindow>().Open();
+        }
+
+        private Tween _killTextTween;
+        public void ShowKillingInfo(KillingInfo killingInfo)
+        {
+            if (killingInfo.Killer == null)
+            {
+                _killingText.SetText($"<color=#FF3B00>{killingInfo.Victim.GetNickname()}</color> defeated!");
+            }
+            else
+            {
+                var config = GameBalance.Instance.KillingTextConfigs.First(x => x.KillCount == killingInfo.KillCount);
+
+                _killingText.SetText(string.Format(config.Text,
+                    killingInfo.Killer.GetNickname(),
+                    killingInfo.Victim.GetNickname()));
+            }
+
+            _killingText.alpha = 1;
+            
+            _killTextTween?.Kill();
+            _killTextTween = _killingText.DOFade(0, 0.7f)
+                .SetEase(Ease.Linear)
+                .SetDelay(1.5f)
+                .OnComplete(() => _killingText.SetText(string.Empty));
         }
     }
 }

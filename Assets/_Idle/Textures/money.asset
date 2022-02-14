@@ -54,9 +54,9 @@ MonoBehaviour:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 2
-    m_Scale: 1
-    m_Name: money
-    m_HashCode: 132364592
+    m_Scale: 1.3
+    m_Name: ads
+    m_HashCode: 109046
   m_SpriteGlyphTable:
   - m_Index: 0
     m_Metrics:
@@ -94,17 +94,17 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 128
       m_Height: 128
-      m_HorizontalBearingX: -64
-      m_HorizontalBearingY: 64
-      m_HorizontalAdvance: 128
+      m_HorizontalBearingX: -21.3
+      m_HorizontalBearingY: 95.8
+      m_HorizontalAdvance: 86.8
     m_GlyphRect:
-      m_X: 0
+      m_X: 256
       m_Y: 384
       m_Width: 128
       m_Height: 128
     m_Scale: 1
     m_AtlasIndex: 0
-    sprite: {fileID: -6460368395533782001, guid: d6e9474efd86fcf44ba6ca793549af3f,
+    sprite: {fileID: 7234583761468912955, guid: d6e9474efd86fcf44ba6ca793549af3f,
       type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []

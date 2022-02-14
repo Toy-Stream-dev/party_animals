@@ -7,6 +7,7 @@ using _Idle.Scripts.Model.Player;
 using _Idle.Scripts.Model.Unit;
 using _Idle.Scripts.View.Item;
 using Plugins.GeneralTools.Scripts.View;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -176,8 +177,9 @@ namespace _Idle.Scripts.View.Unit
         private readonly int ANIMATION_MELEE_WEAPON_ATK_KEY = Animator.StringToHash("Melee Attack");
         private readonly int ANIMATION_RANGE_WEAPON_ATK_KEY = Animator.StringToHash("Range Attack");
         private readonly int ANIMATION_RANGE_GET_KEY = Animator.StringToHash("Range Get Weapon");
-        private readonly int ANIMATION_VICTORY_GET_KEY = Animator.StringToHash("Victory");
-        private readonly int ANIMATION_VICTORY2_GET_KEY = Animator.StringToHash("Victory 2");
+        private readonly int ANIMATION_VICTORY_KEY = Animator.StringToHash("Victory");
+        private readonly int ANIMATION_VICTORY2_KEY = Animator.StringToHash("Victory 2");
+        private readonly int ANIMATION_DANCE_KEY = Animator.StringToHash("Dance");
 
         private List<int> _bodiesLayers;
         private float _angularSpeed;
@@ -194,7 +196,7 @@ namespace _Idle.Scripts.View.Unit
             //     part.slerpDrive = driveOnRagdoll.JointDrive;
             // }
             SetDriveType(JointDrivePartType.Low);
-
+            
             return base.SetModel(model);
         }
 
@@ -481,15 +483,20 @@ namespace _Idle.Scripts.View.Unit
             if (random)
             {
                 _animator.Play(Random.Range(0.0f, 1.0f) > 0.5f 
-                    ? ANIMATION_VICTORY_GET_KEY
-                    : ANIMATION_VICTORY2_GET_KEY,
+                    ? ANIMATION_VICTORY_KEY
+                    : ANIMATION_VICTORY2_KEY,
                     0,
                     0.0f);
             }
             else
             {
-                _animator.Play(ANIMATION_VICTORY_GET_KEY, 0, 0.0f);
+                _animator.Play(ANIMATION_VICTORY_KEY, 0, 0.0f);
             }
+        }
+
+        public void Dance()
+        {
+            _animator.Play(ANIMATION_DANCE_KEY, 0, 0.0f);
         }
 
         public void SetLayerWeight(int layerIndex, float weight)
@@ -683,5 +690,13 @@ namespace _Idle.Scripts.View.Unit
         {
             _animator.enabled = false;
         }
+
+#if DEBUG
+        [Button]
+        public void FallUnit()
+        {
+            Model.Fall();
+        }
+#endif
     }
 }

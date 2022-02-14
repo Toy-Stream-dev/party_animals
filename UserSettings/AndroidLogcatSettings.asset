@@ -3,8 +3,8 @@
     "m_SelectedPackage": {
         "deviceId": "RZ8R717382B",
         "name": "com.toy.stream.fluffy.brawl",
-        "processId": 2200,
-        "exited": false
+        "processId": 7009,
+        "exited": true
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
@@ -52,39 +52,45 @@
         },
         {
             "deviceId": "RZ8R717382B",
-            "name": "com.platypus.games.idle.looters",
-            "processId": 16280,
-            "exited": true
-        },
-        {
-            "deviceId": "RZ8R717382B",
-            "name": "com.platypusgames.bravemage",
-            "processId": 2765,
-            "exited": true
-        },
-        {
-            "deviceId": "RZ8R717382B",
-            "name": "com.sec.android.app.launcher",
-            "processId": 2179,
-            "exited": true
-        },
-        {
-            "deviceId": "RZ8R717382B",
-            "name": "com.android.settings",
-            "processId": 27360,
-            "exited": true
-        },
-        {
-            "deviceId": "RZ8R717382B",
-            "name": "com.sec.android.app.launcher",
-            "processId": 2335,
+            "name": "com.toy.stream.fluffy.brawl",
+            "processId": 25772,
             "exited": true
         },
         {
             "deviceId": "RZ8R717382B",
             "name": "com.toy.stream.fluffy.brawl",
-            "processId": 2200,
+            "processId": 28294,
+            "exited": true
+        },
+        {
+            "deviceId": "RZ8R717382B",
+            "name": "com.toy.stream.fluffy.brawl",
+            "processId": 28626,
+            "exited": true
+        },
+        {
+            "deviceId": "RZ8R717382B",
+            "name": "com.toy.stream.fluffy.brawl",
+            "processId": 9338,
+            "exited": true
+        },
+        {
+            "deviceId": "RZ8R717382B",
+            "name": "com.sec.android.app.launcher",
+            "processId": 2127,
             "exited": false
+        },
+        {
+            "deviceId": "RZ8R717382B",
+            "name": "com.toy.stream.fluffy.brawl",
+            "processId": 26021,
+            "exited": true
+        },
+        {
+            "deviceId": "RZ8R717382B",
+            "name": "com.toy.stream.fluffy.brawl",
+            "processId": 7009,
+            "exited": true
         }
     ],
     "m_Tags": {

@@ -35,6 +35,8 @@ namespace _Idle.Scripts.Model.Item
 		//public UnitModel Owner { get; set; }
 		public InteractableItemParams Params => _params;
 
+		public int Priority; 
+
 		public UnitModel Owner
 		{
 			get => _owner;
@@ -64,12 +66,17 @@ namespace _Idle.Scripts.Model.Item
 
 			switch (unit.Model.CurrentState)
 			{
+				case UnitState.Move:
+					if (unit.UnitType == UnitType.Player)
+					{
+						View.Outline?.EnableOutline();
+					}
+					return;
 				case UnitState.Finish:
 				case UnitState.Lift:
 				case UnitState.Lifted:
 				case UnitState.Fall:
 				case UnitState.DropUnit:
-				case UnitState.Move:
 				case UnitState.Die:
 				case UnitState.Stunned:
 				case UnitState.Interactable:
@@ -84,6 +91,12 @@ namespace _Idle.Scripts.Model.Item
 			if (_interactableUnits.Contains(unit.Model.UnitID))
 				return;
 
+
+			if (!unit.Model.HasItemPriority(this))
+			{
+				return;
+			}
+			
 			switch (View.ItemType)
 			{
 				case InteractableItemType.Unit:
@@ -91,6 +104,9 @@ namespace _Idle.Scripts.Model.Item
 					{
 						return;
 					}
+					
+					unit.Model.CurrentItem?.DropRandom();
+					
 					_owner.View.SpineCollider.Deactivate();
 					break;
 			}
@@ -122,6 +138,16 @@ namespace _Idle.Scripts.Model.Item
 		{
 			if (!other.TryGetComponent<UnitView>(out var unit))
 				return;
+
+			OnTriggerExit(unit);
+		}
+
+		public void OnTriggerExit(UnitView unit)
+		{
+			if (unit.UnitType == UnitType.Player)
+			{
+				View.Outline?.DisableOutline();
+			}
 			
 			if (_interactableUnits.Count <= 0)
 				return;
@@ -142,7 +168,7 @@ namespace _Idle.Scripts.Model.Item
 					}
 					break;
 			}*/
-
+			
 			unit.Model.StopInteractable();
 			_interactableUnits.Remove(unit.Model.UnitID);
 			
@@ -220,6 +246,7 @@ namespace _Idle.Scripts.Model.Item
 			proj.transform.localScale = GameBalance.Instance.RangeWeaponScale;
 			proj.transform.position = position;
 			direction.y += 0.1f;
+			proj.StartMe();
 			proj.Throw(direction, _params.PunchPower);
 
 			_ammoLeft--;
@@ -337,7 +364,7 @@ namespace _Idle.Scripts.Model.Item
 		public void PickedUp()
 		{
 			Clear();
+			View.Outline?.DisableOutline();
 		}
-		
 	}
 }

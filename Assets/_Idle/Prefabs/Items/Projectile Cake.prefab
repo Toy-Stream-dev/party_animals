@@ -217,6 +217,7 @@ MonoBehaviour:
   ProjectileType: 20
   _rigidbody: {fileID: 6760008126064939775}
   _collider: {fileID: 5274608457232309822}
+  _outline: {fileID: 0}
 --- !u!1001 &7352051372207977549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -279,6 +280,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9eab7ce56f6d5624b81d6121ad68ea5c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3f481947f5f37324cbb3ac4468a4bd11, type: 2}
     - target: {fileID: 919132149155446097, guid: 9eab7ce56f6d5624b81d6121ad68ea5c,
         type: 3}
       propertyPath: m_Name

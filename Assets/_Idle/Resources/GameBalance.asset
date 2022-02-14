@@ -49,7 +49,7 @@ MonoBehaviour:
   TimeToNormal: 1
   StartFOV: 28
   SlowMotionFOV: 18
-  EndLevelDelay: 1
+  EndLevelDelay: 3
   UnitDestroyDelay: 0.5
   DisableAI: 0
   PlayerData:
@@ -141,272 +141,285 @@ MonoBehaviour:
     ShootInterval: 1
     PunchPower: 1
   LevelParams:
-  - _levelIndex: 1
+  - _levelIndex: 0
     _isTutorial: 1
+    _playersCount: {x: 0, y: 0}
+  - _levelIndex: 1
+    _isTutorial: 0
+    _playersCount: {x: 3, y: 6}
   - _levelIndex: 2
     _isTutorial: 0
+    _playersCount: {x: 2, y: 4}
   - _levelIndex: 3
     _isTutorial: 0
+    _playersCount: {x: 3, y: 5}
   - _levelIndex: 4
     _isTutorial: 0
+    _playersCount: {x: 4, y: 6}
   NickNames:
-  - gatling
-  - kraken
-  - HANNIBAL
-  - crusher
-  - FIGMENT
-  - kraken
-  - diviner
-  - GRIM
-  - EXORCIST
-  - demolition
-  - diviner
-  - diablo
-  - COGNAC
-  - DEVIN NASH
-  - yamecah
-  - HELLCAT
-  - diablo
-  - HANNIBAL
-  - arya
-  - NUCLEAR
-  - LEELOO
-  - DOM
-  - DOM
-  - hydra
-  - HANNIBAL
-  - LEELOO
-  - DOM
-  - BENDER
-  - gatling
-  - GIANT
-  - EXORCIST
-  - fester
-  - FOX
-  - ALIEN
-  - HANNIBAL
-  - hydra
-  - FOX
-  - HITTER
-  - NUCLEAR
-  - arya
-  - gatling
-  - FIGMENT
-  - the armor
-  - KENO
   - hauteur
-  - fester
-  - warden
-  - COUGAR
-  - hydra
-  - daredevil
-  - HEROIN
-  - crusher
-  - FIGMENT
-  - herzogin
-  - fester
-  - exterminator
-  - FOX
-  - espada
-  - NUCLEAR
-  - DIRTY DIRTY
-  - GIANT
-  - COGNAC
-  - KENO
-  - NINJA
-  - the armor
-  - bomber
-  - grave
-  - BAAL
-  - YESIMFUNNY
-  - espada
-  - animus
-  - LEELOO
-  - COGNAC
-  - goddess
-  - COUGAR
-  - HAUNTER
-  - NINJA
-  - blevins
-  - HAUNTER
-  - daredevil
-  - warden
-  - GRENADE
-  - FOX
-  - FURY
-  - exterminator
-  - BAAL
-  - COGNAC
-  - ANNIHILATOR
-  - daredevil
-  - banshee
-  - YESIMFUNNY
-  - HITTER
-  - BAAL
-  - ALIEN
-  - HEROIN
-  - DEVIN NASH
-  - FURY
-  - bomber
-  - golem
-  - falchion
-  - ORACLE
-  - hero
-  - golem
-  - goddess
-  - HAUNTER
-  - yamecah
-  - boomslang
-  - DEVIN NASH
-  - falchion
-  - grave
-  - ORACLE
-  - BENDER
-  - espada
-  - GRENADE
-  - ghoul
-  - warden
-  - NUCLEAR
-  - grave
-  - detroit
-  - banshee
   - hero
   - goddess
-  - yamecah
   - bomber
   - eliminator
+  - detroit
+  - banshee
+  - DEVIN NASH
+  - banshee
   - the armor
-  - eliminator
-  - animus
-  - FIGMENT
-  - ANNIHILATOR
-  - ghoul
-  - HEROIN
   - herzogin
-  - LEON
-  - LEELOO
-  - goddess
-  - DEVIANT
-  - ANNIHILATOR
-  - KENO
-  - bomber
   - ORACLE
+  - LEON
+  - animus
+  - YESIMFUNNY
+  - EXORCIST
+  - GRENADE
+  - manhattan
+  - yamecah
+  - DOM
+  - golem
+  - daredevil
+  - GIANT
+  - demolition
   - COUGAR
-  - HELLCAT
-  - espada
   - DOM
   - diviner
+  - blevins
+  - HANNIBAL
+  - COGNAC
+  - crusher
+  - DEVIN NASH
+  - hero
+  - NINJA
+  - HAUNTER
   - FURY
-  - BENDER
-  - manhattan
-  - DEVIANT
-  - diablo
-  - arya
-  - eliminator
-  - EXORCIST
+  - fester
+  - bomber
+  - HAUNTER
+  - falchion
+  - blevins
+  - GRIM
+  - kraken
+  - herzogin
   - BENDER
   - kraken
-  - GRIM
-  - diviner
-  - demolition
-  - crusher
-  - COUGAR
-  - animus
+  - LEELOO
+  - GRENADE
   - manhattan
-  - golem
+  - HELLCAT
   - DIRTY DIRTY
+  - HELLCAT
+  - GRENADE
+  - LEELOO
+  - FIGMENT
+  - HEROIN
+  - animus
+  - COUGAR
+  - falchion
+  - ANNIHILATOR
+  - HANNIBAL
+  - boomslang
+  - hydra
+  - DIRTY DIRTY
+  - herzogin
+  - eliminator
+  - animus
+  - hydra
+  - NUCLEAR
+  - DEVIANT
+  - yamecah
+  - KENO
+  - HITTER
+  - DEVIANT
+  - NINJA
+  - blevins
+  - GIANT
+  - ghoul
+  - LEELOO
+  - ghoul
+  - GIANT
+  - daredevil
+  - espada
+  - grave
+  - warden
+  - ORACLE
+  - NUCLEAR
+  - eliminator
+  - exterminator
+  - detroit
+  - gatling
+  - diablo
+  - NUCLEAR
+  - hydra
+  - DOM
+  - EXORCIST
+  - FIGMENT
+  - DEVIANT
+  - grave
+  - eliminator
+  - arya
+  - ALIEN
+  - FURY
+  - warden
+  - grave
+  - EXORCIST
+  - gatling
+  - espada
+  - GRIM
+  - HAUNTER
+  - yamecah
+  - arya
+  - LEON
+  - FURY
+  - the armor
+  - the armor
+  - boomslang
+  - kraken
+  - ORACLE
   - boomslang
   - herzogin
   - daredevil
-  - eliminator
-  - hauteur
-  - blevins
-  - GRIM
-  - HELLCAT
-  - ORACLE
-  - NINJA
-  - diablo
-  - DEVIANT
-  - ANNIHILATOR
-  - detroit
-  - NINJA
-  - ghoul
-  - DEVIANT
-  - blevins
-  - hydra
-  - HELLCAT
-  - golem
-  - HAUNTER
-  - GRENADE
-  - kraken
-  - boomslang
-  - yamecah
-  - gatling
-  - exterminator
-  - ALIEN
-  - exterminator
+  - YESIMFUNNY
   - demolition
-  - HITTER
-  - FURY
-  - arya
-  - GRENADE
-  - ALIEN
-  - HITTER
-  - DIRTY DIRTY
-  - manhattan
-  - demolition
-  - detroit
-  - crusher
-  - grave
-  - boomslang
-  - LEON
-  - EXORCIST
-  - GIANT
-  - detroit
-  - GRIM
-  - herzogin
-  - KENO
+  - blevins
+  - BAAL
   - the armor
-  - GIANT
-  - HEROIN
-  - banshee
-  - falchion
-  - DIRTY DIRTY
+  - BENDER
+  - FURY
+  - boomslang
+  - NINJA
+  - BENDER
+  - ANNIHILATOR
   - warden
+  - kraken
+  - FIGMENT
+  - falchion
+  - KENO
+  - HANNIBAL
+  - daredevil
+  - diablo
+  - hydra
+  - GRIM
+  - DIRTY DIRTY
+  - KENO
+  - FOX
+  - FOX
+  - COGNAC
+  - golem
+  - gatling
+  - GIANT
+  - golem
+  - COUGAR
+  - grave
+  - hauteur
+  - HEROIN
+  - gatling
+  - diablo
+  - COGNAC
+  - manhattan
+  - crusher
+  - demolition
+  - diablo
+  - HELLCAT
+  - fester
+  - ORACLE
+  - HAUNTER
+  - banshee
+  - bomber
+  - diviner
   - BAAL
   - banshee
+  - HEROIN
+  - detroit
+  - DEVIANT
+  - warden
+  - EXORCIST
+  - arya
+  - BAAL
+  - HANNIBAL
+  - goddess
+  - diviner
+  - HITTER
+  - LEELOO
+  - detroit
+  - ANNIHILATOR
+  - espada
+  - DOM
+  - NUCLEAR
+  - yamecah
+  - bomber
+  - BAAL
+  - NINJA
+  - diviner
+  - goddess
+  - arya
+  - HITTER
+  - exterminator
+  - GRENADE
+  - exterminator
+  - crusher
+  - HELLCAT
+  - KENO
   - DEVIN NASH
-  - blevins
+  - ANNIHILATOR
+  - exterminator
+  - crusher
+  - demolition
+  - FIGMENT
+  - FOX
+  - HITTER
+  - espada
+  - ALIEN
+  - COUGAR
+  - DIRTY DIRTY
+  - goddess
+  - fester
+  - DEVIN NASH
+  - HEROIN
+  - BENDER
+  - FOX
+  - ALIEN
+  - golem
+  - COGNAC
+  - ALIEN
+  - GRIM
+  - ghoul
   ItemSkins:
   - Name: Default
     Identificator: cat
     Id: 0
-    SoftPrice: 0
+    PurchaseType: 1
+    PriceAmount: 0
     Mesh: {fileID: 2212009239438826721, guid: a87d55291211b2a47a7b0664f3e328c8, type: 3}
   - Name: Test 1
     Identificator: dog
     Id: 1
-    SoftPrice: 250
+    PurchaseType: 3
+    PriceAmount: 2
     Mesh: {fileID: 4493585093827132993, guid: 2ab65759d2349534395bf68329fce9df, type: 3}
   - Name: Test 2
     Identificator: pig
     Id: 2
-    SoftPrice: 500
+    PurchaseType: 3
+    PriceAmount: 2
     Mesh: {fileID: 4493585093827132993, guid: 225c19e57ce4dfc4d8d6333137f83722, type: 3}
   - Name: 
     Identificator: duck
     Id: 3
-    SoftPrice: 750
+    PurchaseType: 1
+    PriceAmount: 750
     Mesh: {fileID: -1550514412580984892, guid: 75d6626e04c549f43b7c203f2646ce33, type: 3}
   - Name: 
     Identificator: rhinoceros
     Id: 4
-    SoftPrice: 1000
+    PurchaseType: 1
+    PriceAmount: 1000
     Mesh: {fileID: -1057537345715913504, guid: 0cbb46d9700c60f4e99963e5a5e20593, type: 3}
   - Name: 
     Identificator: rabbit
     Id: 5
-    SoftPrice: 1500
+    PurchaseType: 1
+    PriceAmount: 1500
     Mesh: {fileID: -5053925668127403250, guid: 74dd050cc055e9643932677ea7c3776f, type: 3}
   UnitSkins:
   - {fileID: 2212009239438826721, guid: a87d55291211b2a47a7b0664f3e328c8, type: 3}
@@ -438,31 +451,122 @@ MonoBehaviour:
   CharacterLevels:
   - Level: 1
     Experience: 100
+    Rewards:
+    - RewardType: 1
+      Amount: 50
   - Level: 2
     Experience: 200
+    Rewards:
+    - RewardType: 1
+      Amount: 50
   - Level: 3
     Experience: 300
+    Rewards:
+    - RewardType: 1
+      Amount: 50
   - Level: 4
     Experience: 400
+    Rewards:
+    - RewardType: 1
+      Amount: 50
   - Level: 5
     Experience: 500
+    Rewards:
+    - RewardType: 1
+      Amount: 100
   - Level: 6
     Experience: 600
+    Rewards:
+    - RewardType: 1
+      Amount: 100
   - Level: 7
     Experience: 700
+    Rewards:
+    - RewardType: 1
+      Amount: 100
   - Level: 8
     Experience: 800
+    Rewards:
+    - RewardType: 1
+      Amount: 100
   - Level: 9
     Experience: 900
+    Rewards:
+    - RewardType: 1
+      Amount: 100
   - Level: 10
     Experience: 1000
+    Rewards:
+    - RewardType: 1
+      Amount: 200
+    - RewardType: 2
+      Amount: 10
   - Level: 11
     Experience: 2000
+    Rewards:
+    - RewardType: 1
+      Amount: 200
   - Level: 12
     Experience: 4000
+    Rewards:
+    - RewardType: 1
+      Amount: 200
   - Level: 13
     Experience: 8000
+    Rewards:
+    - RewardType: 1
+      Amount: 200
   - Level: 14
     Experience: 16000
+    Rewards:
+    - RewardType: 1
+      Amount: 200
   - Level: 15
     Experience: 32000
+    Rewards:
+    - RewardType: 1
+      Amount: 200
+  KillingTextConfigs:
+  - KillCount: 1
+    Text: <color=#23FF75>{0}</color> threw away <color=#FF3B00>{1}</color>
+    KillerColor: {r: 0.13725491, g: 1, b: 0.45882353, a: 1}
+    VictimColor: {r: 1, g: 0.23137255, b: 0, a: 1}
+  - KillCount: 2
+    Text: <color=#23FF75>{0}</color> <color=#23CFFF>atrocities</color>!
+    KillerColor: {r: 0.13725491, g: 1, b: 0.45882353, a: 1}
+    VictimColor: {r: 1, g: 0.23137255, b: 0, a: 1}
+  - KillCount: 3
+    Text: <color=#23FF75>{0}</color> <color=#E423FF>restless</color>!
+    KillerColor: {r: 0.13725491, g: 1, b: 0.45882353, a: 1}
+    VictimColor: {r: 1, g: 0.23137255, b: 0, a: 1}
+  - KillCount: 4
+    Text: <color=#23FF75>{0}</color> <color=#FFA800>RESTLESS</color>!
+    KillerColor: {r: 0.13725491, g: 1, b: 0.45882353, a: 1}
+    VictimColor: {r: 1, g: 0.23137255, b: 0, a: 1}
+  - KillCount: 5
+    Text: <color=#23FF75>{0}</color> <color=#FFA800>RESTLESS</color>!!
+    KillerColor: {r: 0.13725491, g: 1, b: 0.45882353, a: 1}
+    VictimColor: {r: 1, g: 0.23137255, b: 0, a: 1}
+  - KillCount: 6
+    Text: <color=#23FF75>{0}</color> <color=#FFA800>RESTLESS</color>!!!
+    KillerColor: {r: 0.13725491, g: 1, b: 0.45882353, a: 1}
+    VictimColor: {r: 1, g: 0.23137255, b: 0, a: 1}
+  WinStreakRewards:
+  - WinCount: 2
+    Rewards:
+    - RewardType: 1
+      Amount: 100
+  - WinCount: 3
+    Rewards:
+    - RewardType: 1
+      Amount: 150
+  - WinCount: 4
+    Rewards:
+    - RewardType: 1
+      Amount: 200
+  - WinCount: 5
+    Rewards:
+    - RewardType: 1
+      Amount: 150
+    - RewardType: 2
+      Amount: 5

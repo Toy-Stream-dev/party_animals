@@ -217,6 +217,7 @@ MonoBehaviour:
   ProjectileType: 21
   _rigidbody: {fileID: 6760008126064939775}
   _collider: {fileID: 5274608457232309822}
+  _outline: {fileID: 0}
 --- !u!1001 &7582646881278325988
 PrefabInstance:
   m_ObjectHideFlags: 0

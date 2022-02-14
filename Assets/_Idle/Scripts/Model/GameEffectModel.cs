@@ -16,8 +16,7 @@ namespace _Idle.Scripts.Model
         public override BaseModel Start()
         {
             Pool.Spawn<BaseGameEffect>(3, effect => effect.Type.Equals(GameEffectType.Poof));
-            Pool.Spawn<BaseGameEffect>(2, effect => effect.Type.Equals(GameEffectType.ConfettiCanon));
-            Pool.Spawn<BaseGameEffect>(1, effect => effect.Type.Equals(GameEffectType.ConfettiRain));
+            Pool.Spawn<BaseGameEffect>(1, effect => effect.Type.Equals(GameEffectType.ConfettiExplosion));
             
             return base.Start();
         }

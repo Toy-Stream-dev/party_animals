@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using _Idle.Scripts.Balance;
 using _Idle.Scripts.Enums;
+using _Idle.Scripts.View.Level;
 using GeneralTools.Model;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,6 +20,7 @@ namespace _Idle.Scripts.Model.Level
 		private LevelContainer _levelContainer;
 		private List<LevelModel> _levels;
 		private LevelParams[] _levelParams;
+		private int _lastLevelId;
 
 		public  override BaseModel Init()
 		{
@@ -39,30 +41,52 @@ namespace _Idle.Scripts.Model.Level
 
 		public void LoadLevel(int levelIndex)
 		{
-			CurrentLevelIndex = levelIndex - 1;
+			RemoveLevel();
+			CurrentLevelIndex = levelIndex;
 			LoadNextLevel();
 		}
 
 		public void LoadNextLevel()
+		{
+			if (DevFlags.DEV_TOOLS)
+			{
+				var view = MainGame.Root.GetComponentInChildren<LevelView>();
+				view.Init();
+				CurrentLevel = _levelContainer.Create();
+				CurrentLevel.SetView(view);
+				CurrentLevelIndex = view.LevelIndex - 1;
+			}
+			else
+			{
+				if (CurrentLevelIndex != 0)
+				{
+					CurrentLevelIndex = UnityEngine.Random.Range(1, _levels.Capacity);
+
+					while (_lastLevelId == CurrentLevelIndex)
+					{
+						CurrentLevelIndex = UnityEngine.Random.Range(1, _levels.Capacity);
+					}
+				}
+			
+				_lastLevelId = CurrentLevelIndex;
+				CurrentLevel = _levelContainer.Spawn(CurrentLevelIndex);
+				if (CurrentLevel == null || CurrentLevel.View == null)
+					LoadNextLevel();
+			}
+			
+			CurrentLevel.SetParams(_levelParams[CurrentLevelIndex]);
+			CurrentLevel.Start();
+			CurrentLevel.SetState(LevelState.Progress);
+			OnSpawnLevel?.Invoke(CurrentLevelIndex);
+		}
+
+		private void RemoveLevel()
 		{
 			if (_levelContainer.TryRemove(CurrentLevel))
 			{
 				NavMesh.RemoveAllNavMeshData();
 				OnRemoveLevel?.Invoke(CurrentLevelIndex);
 			}
-
-			if (CurrentLevelIndex >= _levels.Capacity)
-			{
-				var rndIdx = _levels.Capacity > GameBalance.Instance.RandomLevelFromCount ? GameBalance.Instance.RandomLevelFromCount : _levels.Capacity;
-				CurrentLevelIndex = _levels.Capacity - 1 - UnityEngine.Random.Range(0, ++rndIdx);
-			}
-			
-			CurrentLevel = _levelContainer.Spawn(++CurrentLevelIndex);
-			
-			CurrentLevel.SetParams(_levelParams[CurrentLevelIndex - 1]);
-			CurrentLevel.Start();
-			CurrentLevel.SetState(LevelState.Progress);
-			OnSpawnLevel?.Invoke(CurrentLevelIndex);
 		}
 	}
 }

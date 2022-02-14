@@ -263,15 +263,6 @@ namespace _Idle.Scripts.Model.Components
             if (_path.corners.Length > 0)
             {
                 vector = _path.corners[_pathPointIndex] - Model.Position;
-//                 var stepCount = 10;
-//                 vector /= stepCount;
-//                 for (var i = 0; i < stepCount - 1; i++)
-//                 {
-// #if DEBUG
-//                     // for (int i = 0; i < _path.corners.Length - 1; i++)
-//                     Debug.DrawLine(vector, vector * (i + 1), Random.ColorHSV());
-// #endif
-//                 }
             }
 
             distance = (Model.Position - targetPosition).sqrMagnitude;

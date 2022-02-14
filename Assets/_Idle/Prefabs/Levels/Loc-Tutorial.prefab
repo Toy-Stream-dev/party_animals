@@ -19703,8 +19703,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feeafdc63037436a8ce9cc0e799dc70c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelIndex: 1
-  _playerSpawnPoint: {fileID: 6090788331616623164}
+  _levelIndex: 0
+  _playerSpawnPoints:
+  - {fileID: 6090788331616623164}
   _throwPoints: []
   NavMeshSurface: {fileID: 1595879853601225891}
 --- !u!114 &8133397473072440415

@@ -17,7 +17,7 @@ namespace _Idle.Scripts.View.Item
 		[SerializeField] private Collider _collider;
 
 		private float _punchPower;
-		
+
 		public void Throw(Vector3 direction, float punchPower)
 		{
 			_punchPower = punchPower;

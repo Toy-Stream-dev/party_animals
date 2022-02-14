@@ -3,7 +3,7 @@
     public enum GameEffectType
     {
         Poof,
-        ConfettiRain,
+        ConfettiExplosion,
         ConfettiCanon,
         Stun,
         HandHit,

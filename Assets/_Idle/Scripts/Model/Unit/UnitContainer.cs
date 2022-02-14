@@ -5,6 +5,7 @@ using _Idle.Scripts.Balance;
 using _Idle.Scripts.Enums;
 using _Idle.Scripts.Model.Base;
 using _Idle.Scripts.Model.Unit;
+using _Idle.Scripts.Utilities;
 using _Idle.Scripts.View.Level;
 using GeneralTools.Model;
 using GeneralTools.Tools;
@@ -45,6 +46,7 @@ namespace _Idle.Scripts.Model.Player
         public void SpawnUnits()
         {
             var level = _gameModel.LevelLoader.CurrentLevel;
+            
             var spawnPoints = level.View.transform.GetComponentsInChildren<SpawnPoint>().Where(x => x.PointType == SpawnPointType.Unit);
             var spawnedSkins = new List<Balance.Item>();
 
@@ -53,15 +55,29 @@ namespace _Idle.Scripts.Model.Player
             spawnedSkins.Add(playerSkin);
             
             Balance.Item skin;
-            
-            foreach (var point in spawnPoints)
+            var allSkins = GameBalance.Instance.ItemSkins;
+            var playersCount = level.LevelParams.IsTutorial 
+                ? 1
+                : level.LevelParams.PlayersCount.RandomValue();
+
+            for (var i = 0; i < playersCount; i++)
             {
-                skin = GameBalance.Instance.ItemSkins.Except(spawnedSkins).RandomValue();
-                spawnedSkins.Add(skin);
+                var spawnPoint = spawnPoints.Where(point => point.Available).RandomValue();
+                spawnPoint.Available = false;
+                
+                if (allSkins.Length == spawnedSkins.Count)
+                {
+                    skin = allSkins.RandomValue();
+                }
+                else
+                {
+                    skin = allSkins.Except(spawnedSkins).RandomValue();
+                    spawnedSkins.Add(skin);
+                }
                 
                 var unit = SpawnUnit();
                 unit.SetSkin(skin.Mesh);
-                unit.SetPosition(point.transform.position);
+                unit.SetPosition(spawnPoint.transform.position);
                 unit.LevelStart();
                 OnSpawnUnit?.Invoke(unit, skin);
             }

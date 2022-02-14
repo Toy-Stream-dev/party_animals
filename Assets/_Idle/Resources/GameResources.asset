@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: GameResources
   m_EditorClassIdentifier: 
   _spritesData:
+  - Key: Soft
+    Value: {fileID: -6460368395533782001, guid: d6e9474efd86fcf44ba6ca793549af3f,
+      type: 3}
+  - Key: Hard
+    Value: {fileID: 6875313188632250476, guid: d6e9474efd86fcf44ba6ca793549af3f, type: 3}
   - Key: cat
     Value: {fileID: 21300000, guid: 818b0dcb353f289458a21c7d808ae9d3, type: 3}
   - Key: dog

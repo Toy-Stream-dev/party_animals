@@ -20,6 +20,7 @@ namespace _Idle.Scripts.View.Item
 		public Transform GrabbedPoint2;
 		public Collider MeleeWeaponCollider;
 		public Collider RangeWeaponCollider;
+		public Outline Outline;
 
 		public CollisionMarker CollisionMarker => _collisionMarker;
 
@@ -46,6 +47,21 @@ namespace _Idle.Scripts.View.Item
 			_interactableCollisionListener.OnOnTriggerEnter += OnTriggerEnter;
 			_interactableCollisionListener.OnOnTriggerStay += OnTriggerEnter;
 			_interactableCollisionListener.OnOnTriggerExit += OnTriggerExit;
+
+			switch (ItemType)
+			{
+				case InteractableItemType.Lollipop:
+				case InteractableItemType.Mailbox:
+				case InteractableItemType.Spoon:
+				case InteractableItemType.Cake:
+				case InteractableItemType.Bomb:
+				case InteractableItemType.Tomatoes:
+					Model.Priority = 1;
+					break;
+				case InteractableItemType.Unit:
+					Model.Priority = 100;
+					break;
+			}
 			
 			if (ItemType == InteractableItemType.Unit)
 				return;

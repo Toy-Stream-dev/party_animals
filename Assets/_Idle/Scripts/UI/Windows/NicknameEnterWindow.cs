@@ -26,13 +26,13 @@ namespace _Idle.Scripts.UI.Windows
 
         public override BaseUI Open()
         {
-            _inputField.text = GameBalance.Instance.PlayerData.Nickname;
+            _inputField.text = _game.PlayerNickname;
             return base.Open();
         }
 
         private void ApplyButtonPressed()
         {
-            if (_inputField.text == GameBalance.Instance.PlayerData.Nickname)
+            if (_inputField.text == _game.PlayerNickname)
             {
                 Close();
                 return;

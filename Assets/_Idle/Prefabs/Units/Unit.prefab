@@ -7,7 +7,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6866108489144034134}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -29,6 +29,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 65880992085549994, guid: b198ca81934683546bccb5d3393f43ab,
+        type: 3}
+      propertyPath: _width
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1438324189199345107, guid: b198ca81934683546bccb5d3393f43ab,
         type: 3}
       propertyPath: m_RootOrder
@@ -89,6 +94,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unit
       objectReference: {fileID: 0}
+    - target: {fileID: 1595163452906310168, guid: b198ca81934683546bccb5d3393f43ab,
+        type: 3}
+      propertyPath: thisJoint
+      value: 
+      objectReference: {fileID: 6376771844506566024}
+    - target: {fileID: 1595163452906310168, guid: b198ca81934683546bccb5d3393f43ab,
+        type: 3}
+      propertyPath: animationTarget
+      value: 
+      objectReference: {fileID: 9166584131317389016}
     - target: {fileID: 7958863975079820628, guid: b198ca81934683546bccb5d3393f43ab,
         type: 3}
       propertyPath: _unitType
@@ -99,11 +114,28 @@ PrefabInstance:
       propertyPath: _navMeshAgent
       value: 
       objectReference: {fileID: 88945437542969408}
+    - target: {fileID: 7958863975079820628, guid: b198ca81934683546bccb5d3393f43ab,
+        type: 3}
+      propertyPath: _outlineWidth
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b198ca81934683546bccb5d3393f43ab, type: 3}
 --- !u!1 &6866108489144034134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1438324189199345118, guid: b198ca81934683546bccb5d3393f43ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 5529476343725377160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9166584131317389016 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3713951006292873296, guid: b198ca81934683546bccb5d3393f43ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 5529476343725377160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!153 &6376771844506566024 stripped
+ConfigurableJoint:
+  m_CorrespondingSourceObject: {fileID: 1495895760744217344, guid: b198ca81934683546bccb5d3393f43ab,
     type: 3}
   m_PrefabInstance: {fileID: 5529476343725377160}
   m_PrefabAsset: {fileID: 0}

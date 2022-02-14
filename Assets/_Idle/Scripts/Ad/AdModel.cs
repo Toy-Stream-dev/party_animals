@@ -214,7 +214,7 @@ namespace _Idle.Scripts.Ad
                 case AdWatchType.Canceled:
                     AdEvent?.Invoke(false);
                     AdEvent = null;
-                    AppEventsProvider.TriggerEvent(GameEvents.RewardVideoAdClosed);
+                    AppEventsProvider.TriggerEvent(GameEvents.RewardVideoAdClosed, _adType);
                     return;
                 
                 case AdWatchType.ErrorLoaded:

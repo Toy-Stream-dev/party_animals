@@ -21,5 +21,6 @@
 		public const string REWARDED_FAILED = "rew_failed";
 		public const string REWARDED_CLOSED = "rew_closed";
 		
+		public const string SKIN_PURCHASE = "skin_purchase";
 	}
 }

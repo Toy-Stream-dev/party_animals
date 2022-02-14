@@ -2,6 +2,7 @@
 using _Idle.Scripts.Model;
 using _Idle.Scripts.Model.Numbers;
 using _Idle.Scripts.UI.Windows;
+using _Idle.Scripts.UI.Windows.DailyRewards;
 using GeneralTools.Model;
 using GeneralTools.Tools;
 using GeneralTools.UI;
@@ -47,6 +48,10 @@ namespace _Idle.Scripts
             {
                 Models.Get<GameModel>().GetProgress(GameParamType.RatingExperience).Change(50);
             }
+
+            if (Input.GetKeyUp(KeyCode.N)) Models.Get<GameModel>().LevelComplete();
+            if (Input.GetKeyUp(KeyCode.W)) GameUI.Get<WinStreakRewardsWindow>().Open();
+           
             
             void CheckTimeScale(float value) => Time.timeScale = Time.timeScale > 1f ? 1f : value;
         }

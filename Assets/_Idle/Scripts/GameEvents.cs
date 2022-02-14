@@ -33,6 +33,8 @@ namespace _Idle.Scripts
 		RewardVideoAdStarted,
 		RewardVideoAdShowed,
 		RewardVideoAdError,
-		RewardVideoAdClosed
+		RewardVideoAdClosed,
+		
+		SkinPurchase
 	}
 }

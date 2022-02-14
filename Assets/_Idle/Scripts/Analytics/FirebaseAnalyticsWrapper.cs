@@ -38,7 +38,7 @@ namespace _Idle.Scripts.Analytics
                     {
                         startId = "0" + startId;
                     }
-                    FirebaseAnalytics.LogEvent(AnalyticsEvents.LEVEL_START, startId, 1);
+                    FirebaseAnalytics.LogEvent($"{AnalyticsEvents.LEVEL_START}:{startId}");
                     break;
                 case GameEvents.LevelComplete:
                     var endId = parameters[0].ToString();
@@ -46,7 +46,7 @@ namespace _Idle.Scripts.Analytics
                     {
                         endId = "0" + endId;
                     }
-                    FirebaseAnalytics.LogEvent(AnalyticsEvents.LEVEL_COMPLETE, endId, 1);
+                    FirebaseAnalytics.LogEvent($"{AnalyticsEvents.LEVEL_COMPLETE}:{endId}");
                     break;
                 case GameEvents.LevelFail:
                     var failId = parameters[0].ToString();
@@ -54,7 +54,7 @@ namespace _Idle.Scripts.Analytics
                     {
                         failId = "0" + failId;
                     }
-                    FirebaseAnalytics.LogEvent(AnalyticsEvents.LEVEL_FAIL, failId, 1);
+                    FirebaseAnalytics.LogEvent($"{AnalyticsEvents.LEVEL_FAIL}:{failId}");
                     break;
                 
                 case GameEvents.BannerStart:
@@ -65,26 +65,30 @@ namespace _Idle.Scripts.Analytics
                     break;
                 
                 case GameEvents.InterstitialVideoAdStarted:
-                    FirebaseAnalytics.LogEvent(AnalyticsEvents.INTER_START);
+                    FirebaseAnalytics.LogEvent($"{AnalyticsEvents.INTER_START}:{parameters[0]}");
                     break;
                 case GameEvents.InterstitialVideoAdShowed:
-                    FirebaseAnalytics.LogEvent(AnalyticsEvents.INTER_SHOWN);
+                    FirebaseAnalytics.LogEvent($"{AnalyticsEvents.INTER_SHOWN}:{parameters[0]}");
                     break;
                 case GameEvents.InterstitialVideoAdError:
-                    FirebaseAnalytics.LogEvent(AnalyticsEvents.INTER_FAILED);
+                    FirebaseAnalytics.LogEvent($"{AnalyticsEvents.INTER_FAILED}:{parameters[0]}");
                     break;
                 
                 case GameEvents.RewardVideoAdStarted:
-                    FirebaseAnalytics.LogEvent(AnalyticsEvents.REWARDED_START);
+                    FirebaseAnalytics.LogEvent($"{AnalyticsEvents.REWARDED_START}:{parameters[0]}");
                     break;
                 case GameEvents.RewardVideoAdShowed:
-                    FirebaseAnalytics.LogEvent(AnalyticsEvents.REWARDED_SHOWN);
+                    FirebaseAnalytics.LogEvent($"{AnalyticsEvents.REWARDED_SHOWN}:{parameters[0]}");
                     break;
                 case GameEvents.RewardVideoAdError:
-                    FirebaseAnalytics.LogEvent(AnalyticsEvents.REWARDED_FAILED);
+                    FirebaseAnalytics.LogEvent($"{AnalyticsEvents.REWARDED_FAILED}:{parameters[0]}");
                     break;
                 case GameEvents.RewardVideoAdClosed:
-                    FirebaseAnalytics.LogEvent(AnalyticsEvents.REWARDED_CLOSED);
+                    FirebaseAnalytics.LogEvent($"{AnalyticsEvents.REWARDED_CLOSED}:{parameters[0]}");
+                    break;
+                
+                case GameEvents.SkinPurchase:
+                    FirebaseAnalytics.LogEvent($"{AnalyticsEvents.SKIN_PURCHASE}:{parameters[0]}");
                     break;
             }
         }

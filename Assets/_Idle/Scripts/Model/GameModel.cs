@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using _Game.Scripts.Enums;
 using _Idle.Scripts.Ad;
 using _Idle.Scripts.Balance;
+using _Idle.Scripts.Data;
 using _Idle.Scripts.Enums;
 using _Idle.Scripts.Model.Base;
 using _Idle.Scripts.Model.Level;
@@ -14,11 +16,12 @@ using _Idle.Scripts.Saves;
 using _Idle.Scripts.UI;
 using _Idle.Scripts.UI.HUD;
 using _Idle.Scripts.UI.Windows;
+using _Idle.Scripts.UI.Windows.DailyRewards;
 using _Idle.Scripts.View.Level;
-using _Idle.Scripts.View.Unit;
 using DG.Tweening;
 using GeneralTools;
 using GeneralTools.Model;
+using GeneralTools.Pooling;
 using GeneralTools.Tools;
 using GeneralTools.UI;
 using UnityEngine;
@@ -56,11 +59,15 @@ namespace _Idle.Scripts.Model
 		private MainWindowLocation _mainLocation;
 		private string[] _nicknames;
 		private string[] _generatedNames;
+		private KillingInfo _lastKillingInfo = new KillingInfo();
 		
 		[SerializeField] private string _firstSessionStartStr;
 		
 
 		public UnitModel Player { get; set; }
+		public string PlayerNickname;
+		public List<Int2> SkinsAdsWatched = new List<Int2>();
+		public int WinStreak;
 		
 		public LevelLoader LevelLoader { get; private set; }
 		public bool Paused => _paused;
@@ -69,6 +76,7 @@ namespace _Idle.Scripts.Model
 		public PlayerContainer PlayerContainer => _playerContainer;
 		public UnitContainer UnitsContainer => _unitContainer;
 		public TimeScale TimeScale => _timeScale;
+		
 		
 		public override BaseModel Init()
 		{
@@ -81,11 +89,18 @@ namespace _Idle.Scripts.Model
 			CreateParam(GameParamType.CollectedCoins);
 			CreateParam(GameParamType.SessionN);
 
+			PlayerNickname = GameBalance.Instance.PlayerData.Nickname;
+			var rewardedSkins = Balance.ItemSkins.Where(x => x.PurchaseType == PurchaseType.Ads);
+			foreach (var skin in rewardedSkins)
+			{
+				SkinsAdsWatched.Add(new Int2(skin.Id, 0));
+			}
+
 			_playerContainer = new PlayerContainer();
 			_unitContainer = new UnitContainer();
 			_itemsContainer = new ItemsContainer();
 			_timeScale = new TimeScale();
-			
+
 			var charLevel = CreateParam(GameParamType.CharacterLevel);
 			var levels = GameBalance.Instance.CharacterLevels;
 			int nextLevelExp;
@@ -139,7 +154,7 @@ namespace _Idle.Scripts.Model
 			_hud = GameUI.Get<Hud>();
 			_hud.ShowLevel(1, 2);
 			
-			_fakeLevelIndex = Mathf.Max(GetParam(GameParamType.CurrentLevel).Level, 1);
+			_fakeLevelIndex = Mathf.Max(GetParam(GameParamType.CurrentLevel).IntValue, 0);
 			
 			var session = GetParam(GameParamType.SessionN);
 			if (session.IntValue == 0)
@@ -221,12 +236,15 @@ namespace _Idle.Scripts.Model
 		{
 			base.CopyFrom(source);
 			
+			PlayerNickname = source.PlayerNickname;
+			SkinsAdsWatched = source.SkinsAdsWatched;
 			_firstSessionStart = source._firstSessionStart;
 		}
 
 		public override void OnBeforeSerialize()
 		{
 			_firstSessionStartStr = _firstSessionStart.ToString(CultureInfo.InvariantCulture);
+			
 			base.OnBeforeSerialize();
 		}
 
@@ -266,7 +284,7 @@ namespace _Idle.Scripts.Model
 				_ad.ShowAd(AdPlacement.LevelComplete, AdVideoType.Interstitial);
 			}
 			
-			LevelLoader.LoadNextLevel();
+			LevelLoader.LoadLevel(_fakeLevelIndex);
 		}
 
 		public void RestartLevel()
@@ -281,15 +299,17 @@ namespace _Idle.Scripts.Model
 			}
 			
 			// _loader.EmulateLoading(GameBalance.Instance.EmulateLoadingTime);
+			WinStreak = 0;
+			
 			LevelLoader.LoadLevel(_fakeLevelIndex);
 			
 			_hud.ClearUnits();
 			_hud.Activate();
 			
+			
 			AppEventsProvider.TriggerEvent(GameEvents.LevelFail, _fakeLevelIndex);
 		}
 
-		//TODO: release revive
 		public void RevivePlayer()
 		{
 			Unpause();
@@ -301,6 +321,7 @@ namespace _Idle.Scripts.Model
 			
 			Player.SetPosition(LevelLoader.CurrentLevel.View.PlayerSpawnPosition);
 			Player.ResetPosition();
+			Player.ShowNickname();
 			
 			_hud.Activate();
 			_hud.ShowGameplayElements(GamePlayElement.SoftCurrency);
@@ -334,11 +355,30 @@ namespace _Idle.Scripts.Model
 			
 			Player.ResetPosition();
 			ShowStartOverlay();
+			CheckWinStrike();
+		}
+
+		private void CheckWinStrike()
+		{
+			var reward = WinStreak < Balance.WinStreakRewards.Count 
+				? Balance.WinStreakRewards.FirstOrDefault(x => x.WinCount == WinStreak) 
+				: Balance.WinStreakRewards.Last();
+
+			if (reward == null)
+				return;
+
+			GameUI.Get<WinStreakRewardsWindow>().Open(reward);
 		}
 
 		private void OnRemoveLevel(int levelIndex)
-		{;
+		{
+			_lastKillingInfo = new KillingInfo();	
 			Models.Get<GameEffectModel>().StopAll();
+			var nicknames = MainGame.WorldSpaceCanvas.GetComponentsInChildren<Nickname>();
+			foreach (var nickname in nicknames)
+			{
+				nickname.PushToPool();
+			}
 		}
 
 		private void InitPlayer()
@@ -390,8 +430,16 @@ namespace _Idle.Scripts.Model
 			if (!LevelLoader.CurrentLevel.InProgress)
 				return;
 
+			WinStreak++;
 			_hud.ClearUnits();
 			_hud.HideGameplayElements(GamePlayElement.SoftCurrency);
+
+			var effectPos = Player.View.transform.position;
+			effectPos.y += 0.7f;
+			var effect = Models.Get<GameEffectModel>().Play(GameEffectType.ConfettiExplosion, effectPos);
+			effect.transform.localScale = Vector3.one * 0.5f;
+			
+			Player?.View.Dance();
 			
 			DOTween.Sequence().AppendInterval(GameBalance.Instance.EndLevelDelay).OnComplete(() =>
 			{
@@ -404,7 +452,7 @@ namespace _Idle.Scripts.Model
 				_fakeLevelIndex++;
 				_hud.HideLevelProgress();
 				GameUI.Get<LevelCompletedWindow>().Open();
-				GetParam(GameParamType.CurrentLevel).SetLevel(_fakeLevelIndex);
+				GetParam(GameParamType.CurrentLevel).SetValue(_fakeLevelIndex);
 				GameCamera.Instance.Follow(null);
 				// Pause();
 			});
@@ -418,7 +466,7 @@ namespace _Idle.Scripts.Model
 			_hud.Deactivate();
 			_hud.HideGameplayElements(GamePlayElement.SoftCurrency);
 
-			DOTween.Sequence().AppendInterval(GameBalance.Instance.EndLevelDelay).OnComplete(() =>
+			DOTween.Sequence().AppendInterval(1).OnComplete(() =>
 			{
 				LevelLoader.CurrentLevel.SetState(LevelState.Failed);
 			
@@ -467,10 +515,21 @@ namespace _Idle.Scripts.Model
 		{
 			var purchased = GetParam(GameParamType.SkinsCharacter).IntValue;
 			GetParam(GameParamType.SkinsCharacter).SetValue(purchased | 1 << item.Id);
-			SpendSoft(item.SoftPrice);
+		
+			switch (item.PurchaseType)
+			{
+				case PurchaseType.Ads:
+					break;
+				default:
+					SpendSoft(item.PriceAmount);
+					break;
+			}
+			
 			SelectSkinCharacter(item);
 			
 			GameSounds.Instance.PlaySound(GameSoundType.SuccessPurchased);
+			
+			AppEventsProvider.TriggerEvent(GameEvents.SkinPurchase, item.Id);
 			
 			GameSave.Save();
 		}
@@ -497,6 +556,14 @@ namespace _Idle.Scripts.Model
 			GetParam(GameParamType.Soft).Change(value);
 		}
 		
+		public void AddHard(int value)
+		{
+			if (value < 0) 
+				return;
+			
+			GetParam(GameParamType.Hard).Change(value);
+		}
+		
 		public void AddExp(int value)
 		{
 			GetProgress(GameParamType.RatingExperience).Change(value);
@@ -512,7 +579,7 @@ namespace _Idle.Scripts.Model
 
 		public void SetPlayerNickname(string value, int price)
 		{
-			GameBalance.Instance.PlayerData.Nickname = value;
+			PlayerNickname = value;
 			SpendSoft(price);
 			
 			GameSave.Save();
@@ -557,15 +624,34 @@ namespace _Idle.Scripts.Model
 			if (charLevel.IntValue < levels.Count - 1)
 			{
 				nextLevelExp = levels[charLevel.IntValue].Experience;
+				GameUI.Get<NewLevelRewardsWindow>().Open(levels[charLevel.IntValue - 1]);
 			}
 			else
 			{
 				nextLevelExp = levels[levels.Count - 1].Experience;
+				GameUI.Get<NewLevelRewardsWindow>().Open(levels[levels.Count - 1]);
 			}
 				
-			Debug.Log($"{charLevel.IntValue} | {nextLevelExp}");
-			
 			expProgress.SetTargetValue(nextLevelExp);
+		}
+
+		public void ShowKillingInfo(KillingInfo killingInfo)
+		{
+			if (_lastKillingInfo.Killer == null || killingInfo.Killer.UnitID != _lastKillingInfo.Killer.UnitID)
+			{
+				_lastKillingInfo = killingInfo;
+				_lastKillingInfo.KillCount = 1;
+				
+				_hud.ShowKillingInfo(_lastKillingInfo);
+				return;
+			}
+
+			var count = _lastKillingInfo.KillCount;
+			_lastKillingInfo = killingInfo;
+			_lastKillingInfo.KillCount = count;
+			
+			_lastKillingInfo.KillCount++;
+			_hud.ShowKillingInfo(_lastKillingInfo);
 		}
 	}
 }

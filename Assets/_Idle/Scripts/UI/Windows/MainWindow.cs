@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using _Idle.Scripts.Ad;
 using _Idle.Scripts.Balance;
+using _Idle.Scripts.Data;
 using _Idle.Scripts.Enums;
 using _Idle.Scripts.Model;
 using _Idle.Scripts.Saves;
@@ -44,6 +45,7 @@ namespace _Idle.Scripts.UI.Windows
 		[SerializeField] private TextMeshProUGUI _levelProgressText;
 		
 		private GameModel _gameModel;
+		private AdModel _adModel;
 		private MainWindowLocation _location;
 		private Tween _countdownTween;
 		private InAppModel _inAppModel;
@@ -62,13 +64,16 @@ namespace _Idle.Scripts.UI.Windows
 		
 		public override void Init()
 		{
-			_playButton.SetCallback(Close);
 			_gameModel = Models.Get<GameModel>();
+			_adModel = Models.Get<AdModel>();
+			
+			_playButton.SetCallback(Close);
 			_nicknameButton.Callback = () => GameUI.Get<NicknameEnterWindow>().Open();
 			_dailyRewardsButton.Callback = () => GameUI.Get<DailyRewardsWindow>().Open();
 			_buySkinButton.SetCallback(BuySkinButtonPressed);
 			_settingsButton.SetCallback(OpenSettings);
 			_noAdOfferButton.SetCallback(OnPressedRemoveAd);
+			
 			_location = MainGame.Root.GetComponentInChildren<MainWindowLocation>(true);
 			_location?.Init();
 			_noAdOfferButton.SetActive(!_gameModel.Flags.Has(GameFlag.AllAdsRemoved));
@@ -230,7 +235,7 @@ namespace _Idle.Scripts.UI.Windows
 		{
 			_soft.SetText($"{_gameModel.GetParam(GameParamType.Soft).Value}");
 			_hard.SetText($"{_gameModel.GetParam(GameParamType.Hard).Value}");
-			_nicknameButton.SetText(GameBalance.Instance.PlayerData.Nickname);
+			_nicknameButton.SetText(_gameModel.PlayerNickname);
 		}
 
 		public override void Close()
@@ -272,19 +277,67 @@ namespace _Idle.Scripts.UI.Windows
 		{
 			_selectedSkin = item;
 			_buySkinLayer.Activate();
-			_buySkinButton.SetText($"{item.SoftPrice}<sprite name=money>");
+
+			switch (item.PurchaseType)
+			{
+				case PurchaseType.Soft:
+					_buySkinButton.SetText($"{item.PriceAmount} <sprite name=money>");
+					break;
+				case PurchaseType.Ads:
+					var record = _gameModel.SkinsAdsWatched.FirstOrDefault(x => x.x == _selectedSkin.Id);
+					if (record == null)
+					{
+						record = new Int2(_selectedSkin.Id, 0);
+						_gameModel.SkinsAdsWatched.Add(record);
+					}
+					_buySkinButton.SetText($"<sprite name=ads> {record.y}/{item.PriceAmount}");
+					break;
+			}
 		}
 
 		private void BuySkinButtonPressed()
 		{
-			if (_selectedSkin.SoftPrice <= _gameModel.GetParam(GameParamType.Soft).IntValue)
+			switch (_selectedSkin.PurchaseType)
+			{
+				case PurchaseType.Soft:
+					if (_selectedSkin.PriceAmount <= _gameModel.GetParam(GameParamType.Soft).IntValue)
+					{
+						_gameModel.PurchaseSkinCharacter(_selectedSkin);
+					}
+					else
+					{
+						GameUI.Get<MessageContainer>().Show("Not enough money.");
+						GameSounds.Instance.PlaySound(GameSoundType.FailedPurchased);
+					}
+					break;
+				case PurchaseType.Ads:
+					_adModel.AdEvent += OnAdFinished;
+					_adModel.ShowAd(AdPlacement.SkinStore);
+					break;
+			}
+		}
+
+		private void OnAdFinished(bool success)
+		{
+			if (!success)
+				return;
+			
+			var item = _gameModel.SkinsAdsWatched.FirstOrDefault(x => x.x == _selectedSkin.Id);
+			if (item == null)
+			{
+				item = new Int2(_selectedSkin.Id, 0);
+				_gameModel.SkinsAdsWatched.Add(item);
+			}
+			
+			item.y++;
+
+			if (item.y == _selectedSkin.PriceAmount)
 			{
 				_gameModel.PurchaseSkinCharacter(_selectedSkin);
 			}
 			else
 			{
-				GameUI.Get<MessageContainer>().Show("Not enough money.");
-				GameSounds.Instance.PlaySound(GameSoundType.FailedPurchased);
+				_buySkinButton.SetText($"<sprite name=ads> {item.y}/{_selectedSkin.PriceAmount}");
 			}
 		}
 

@@ -28,13 +28,13 @@ namespace _Idle.Scripts.Analytics
 					break;
 				
 				case GameEvents.LevelStart:
-					GameAnalytics.NewDesignEvent(AnalyticsEvents.LEVEL_START, (int)parameters[0]);
+					GameAnalytics.NewDesignEvent($"{AnalyticsEvents.LEVEL_START}:{(int)parameters[0]}");
 					break;
 				case GameEvents.LevelComplete:
-					GameAnalytics.NewDesignEvent(AnalyticsEvents.LEVEL_COMPLETE, (int)parameters[0]);
+					GameAnalytics.NewDesignEvent($"{AnalyticsEvents.LEVEL_COMPLETE}:{(int)parameters[0]}");
 					break;
 				case GameEvents.LevelFail:
-					GameAnalytics.NewDesignEvent(AnalyticsEvents.LEVEL_FAIL, (int)parameters[0]);
+					GameAnalytics.NewDesignEvent($"{AnalyticsEvents.LEVEL_FAIL}:{(int)parameters[0]}");
 					break;
                 
 				case GameEvents.BannerStart:
@@ -45,26 +45,30 @@ namespace _Idle.Scripts.Analytics
 					break;
                 
 				case GameEvents.InterstitialVideoAdStarted:
-					GameAnalytics.NewDesignEvent(AnalyticsEvents.INTER_START);
+					GameAnalytics.NewDesignEvent($"{AnalyticsEvents.INTER_START}:{parameters[0]}");
 					break;
 				case GameEvents.InterstitialVideoAdShowed:
-					GameAnalytics.NewDesignEvent(AnalyticsEvents.INTER_SHOWN);
+					GameAnalytics.NewDesignEvent($"{AnalyticsEvents.INTER_SHOWN}:{parameters[0]}");
 					break;
 				case GameEvents.InterstitialVideoAdError:
-					GameAnalytics.NewDesignEvent(AnalyticsEvents.INTER_FAILED);
+					GameAnalytics.NewDesignEvent($"{AnalyticsEvents.INTER_FAILED}:{parameters[0]}");
 					break;
                 
 				case GameEvents.RewardVideoAdStarted:
-					GameAnalytics.NewDesignEvent(AnalyticsEvents.REWARDED_START);
+					GameAnalytics.NewDesignEvent($"{AnalyticsEvents.REWARDED_START}:{parameters[0]}");
 					break;
 				case GameEvents.RewardVideoAdShowed:
-					GameAnalytics.NewDesignEvent(AnalyticsEvents.REWARDED_SHOWN);
+					GameAnalytics.NewDesignEvent($"{AnalyticsEvents.REWARDED_SHOWN}:{parameters[0]}");
 					break;
 				case GameEvents.RewardVideoAdError:
-					GameAnalytics.NewDesignEvent(AnalyticsEvents.REWARDED_FAILED);
+					GameAnalytics.NewDesignEvent($"{AnalyticsEvents.REWARDED_FAILED}:{parameters[0]}");
 					break;
 				case GameEvents.RewardVideoAdClosed:
-					GameAnalytics.NewDesignEvent(AnalyticsEvents.REWARDED_CLOSED);
+					GameAnalytics.NewDesignEvent($"{AnalyticsEvents.REWARDED_CLOSED}:{parameters[0]}");
+					break;
+				
+				case GameEvents.SkinPurchase:
+					GameAnalytics.NewDesignEvent($"{AnalyticsEvents.SKIN_PURCHASE}:{(int)parameters[0]}");
 					break;
 			}
 		}

@@ -10,11 +10,15 @@ using _Idle.Scripts.Model.Components.Timer;
 using _Idle.Scripts.Model.Item;
 using _Idle.Scripts.Model.Numbers;
 using _Idle.Scripts.Model.Player;
+using _Idle.Scripts.UI;
+using _Idle.Scripts.UI.HUD;
 using _Idle.Scripts.View.Item;
 using _Idle.Scripts.View.Unit;
 using DG.Tweening;
 using GeneralTools.Model;
+using GeneralTools.Pooling;
 using GeneralTools.Tools;
+using GeneralTools.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
@@ -40,6 +44,8 @@ namespace _Idle.Scripts.Model.Unit
         [ShowInInspector, ReadOnly]
         private InteractableItemModel _currentItem; //TODO: reset to null
 
+        private GameModel _gameModel;
+        private Hud _hud;
         private GameProgress _stunReset;
         private GameProgress _stunProgress;
         private GameProgress _damageProgress;
@@ -72,6 +78,8 @@ namespace _Idle.Scripts.Model.Unit
         
         [ShowInInspector]
         public UnitState CurrentState { get; protected set; }
+        [ShowInInspector, ReadOnly]
+        public UnitModel LiftedUnitOwner{ get; protected set; }
 
         public Vector3 RealPosition => _position;
         public InteractableItemModel CurrentItem => _currentItem;
@@ -80,7 +88,7 @@ namespace _Idle.Scripts.Model.Unit
 
         public NavMeshAgent NavMeshAgent => View.NavMeshAgent;
 
-        public bool AblePickUpUnit => !_armed && _liftedUnit == null;
+        public bool AblePickUpUnit => _liftedUnit == null;
 
         public event Action<UnitModel> OnPickUpUnit;
         public event Action<UnitModel> OnDie;
@@ -181,6 +189,9 @@ namespace _Idle.Scripts.Model.Unit
 
         public override BaseModel Init()
         {
+            _gameModel = Models.Get<GameModel>();
+            _hud = GameUI.Get<Hud>();
+            
             return this;
         }
         
@@ -199,7 +210,7 @@ namespace _Idle.Scripts.Model.Unit
                 inputHit.OnOnCollisionEnter += InputHit;
             }
             
-            var item = Models.Get<GameModel>().ItemsContainer.CreateItem(View.SpineCollider.InteractableItemView);
+            var item = _gameModel.ItemsContainer.CreateItem(View.SpineCollider.InteractableItemView);
             item.Owner = this;
             
             View.EnableAnimator();
@@ -213,6 +224,33 @@ namespace _Idle.Scripts.Model.Unit
         public void LevelStart()
         {
             Fall();
+            ShowNickname();
+        }
+
+        private Nickname _nickname; 
+        public void ShowNickname()
+        {
+            _nickname = Pool.Pop<Nickname>(MainGame.WorldSpaceCanvas, false);
+            _nickname.Init(UnitType);
+            _nickname.transform.position = View.transform.position + new Vector3(0, 0.28f, 0);
+        }
+
+        public void HideNickname()
+        {
+            _nickname.PushToPool();
+        }
+
+        public string GetNickname()
+        {
+            return _nickname.NicknameText;
+        }
+
+        private void UpdateNicknamePosition()
+        {
+            if (_nickname == null) 
+                return;
+            
+            _nickname.transform.position = View.transform.position + new Vector3(0, 0.28f, 0);
         }
 
         public void SetSkin(Mesh mesh)
@@ -357,6 +395,8 @@ namespace _Idle.Scripts.Model.Unit
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);
+
+            UpdateNicknamePosition();
             
             if (CurrentState == UnitState.Die) 
                 return;
@@ -656,7 +696,7 @@ namespace _Idle.Scripts.Model.Unit
         
         public void StartInteractable(InteractableItemModel item, InteractableItemParams @params)
         {
-            if (@params.IsWeapon && _armed)
+            if (@params.IsWeapon && _armed)    
                 return;
             
             if (_armed || _interaction || _liftedUnit != null)
@@ -723,9 +763,19 @@ namespace _Idle.Scripts.Model.Unit
             if (item.Params.IsWeapon && item.Owner != null)
                 return;
             
-            Debug.Log(nameof(PickUpStart));
+            // Debug.Log(nameof(PickUpStart));
             _pickupItem = item;
             View.PickUp();
+        }
+
+        public bool HasItemPriority(InteractableItemModel item)
+        {
+            if (_pickupItem != null && _pickupItem.Priority >= item.Priority)
+                return false;
+            
+            _pickupItem?.OnTriggerExit(View);
+            _pickupItem = null;
+            return true;
         }
 
         public void PickUpUnit(InteractableItemModel item)
@@ -876,6 +926,7 @@ namespace _Idle.Scripts.Model.Unit
         {
             _interaction = false;
             _interactionProgress = null;
+            _pickupItem = null;
             View.Progress.Hide();
         }
 		
@@ -887,7 +938,7 @@ namespace _Idle.Scripts.Model.Unit
             if (CurrentState == state)
                 return;
             
-            Debug.Log($"New {Transform.name} state: {CurrentState}");
+            // Debug.Log($"New {Transform.name} state: {CurrentState}");
             CurrentState = state;
             
             //View.DisableEffect(GameEffectType.Stun);
@@ -1009,6 +1060,8 @@ namespace _Idle.Scripts.Model.Unit
                     _liftedUnit.View.transform.localRotation = Quaternion.Euler(Vector3.zero);
                     _liftedUnit.SetRotation(Vector3.zero);
                     _liftedUnit.View.transform.localPosition = Vector3.zero;
+
+                    _liftedUnit.LiftedUnitOwner = this;
                     
                     // var fixedJoint = View.RightHand.AddComponent<FixedJoint>(); 
                     // fixedJoint.breakForce = Mathf.Infinity;
@@ -1115,7 +1168,7 @@ namespace _Idle.Scripts.Model.Unit
             SetLayerWeight(5, 0);
             if (UnitType == UnitType.Player)
             {
-                Models.Get<GameModel>().TimeScale.SlowMotion(true);
+                _gameModel.TimeScale.SlowMotion(true);
             }
             _ableDrop = false;
             
@@ -1135,6 +1188,7 @@ namespace _Idle.Scripts.Model.Unit
             _lift.Reset();
             _lift.Pause();
             _unitThrowing = false;
+            _pickupItem = null;
             //View.SpineCollider.InteractableItemView.Model.StopPickUp();
         }
 
@@ -1161,6 +1215,7 @@ namespace _Idle.Scripts.Model.Unit
             _lift.Reset();
             _lift.Pause();
             _liftedUnit = null;
+            _pickupItem = null;
             OnDropUnit?.Invoke();
             _unitThrowing = false;
         }
@@ -1207,6 +1262,12 @@ namespace _Idle.Scripts.Model.Unit
             if (Has(UnitState.Die))
                 return;
             
+            _gameModel.ShowKillingInfo(new KillingInfo
+            {
+                Killer = LiftedUnitOwner,
+                Victim = this
+            });
+            
             Models.Get<GameEffectModel>().Play(GameEffectType.Die, Position);
             View.DisableAnimator();
             
@@ -1220,17 +1281,19 @@ namespace _Idle.Scripts.Model.Unit
                     DOTween.Sequence().AppendInterval(GameBalance.Instance.UnitDestroyDelay).OnComplete(() =>
                     {
                         OnDie?.Invoke(this);
-                        Models.Get<GameModel>().PlayerContainer.Destroy();
+                        _gameModel.PlayerContainer.Destroy();
                     });
                     break;
                 case UnitType.EnemyBase:
                     DOTween.Sequence().AppendInterval(GameBalance.Instance.UnitDestroyDelay).OnComplete(() =>
                     {
                         OnDie?.Invoke(this);
-                        Models.Get<GameModel>().UnitsContainer.Destroy(this);
+                        _gameModel.UnitsContainer.Destroy(this);
                     });
                     break;
             }
+            
+            HideNickname();
         }
 
         public void OnCollisionEnter(Collision other)
@@ -1281,6 +1344,7 @@ namespace _Idle.Scripts.Model.Unit
             SetRotation(Vector3.up * 180);
             ResetAllLayersWeight();
             View.RangeWeaponBag.SetActive(false);
+            View.Idle();
             SetState(UnitState.Idle);
         }
 
